@@ -66,6 +66,7 @@ export class PrometheusDatasource {
   httpMethod: string;
   languageProvider: PrometheusLanguageProvider;
   resultTransformer: ResultTransformer;
+  token: any;
 
   /** @ngInject */
   constructor(instanceSettings, private $q, private backendSrv: BackendSrv, private templateSrv, private timeSrv) {
@@ -86,6 +87,7 @@ export class PrometheusDatasource {
 
   init() {
     this.loadRules();
+    this.token = instanceSettings.jsonData.token;
   }
 
   _request(url, data?, options?: any) {
@@ -120,6 +122,12 @@ export class PrometheusDatasource {
     if (this.basicAuth) {
       options.headers = {
         Authorization: this.basicAuth,
+      };
+    }
+
+    if (this.token) {
+      options.headers = {
+        "Authorization": 'Bearer ' + this.token
       };
     }
 
