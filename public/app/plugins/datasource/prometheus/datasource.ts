@@ -52,6 +52,7 @@ export function prometheusSpecialRegexEscape(value) {
 }
 
 export class PrometheusDatasource {
+  instanceSettings;
   type: string;
   editorSrc: string;
   name: string;
@@ -70,6 +71,7 @@ export class PrometheusDatasource {
 
   /** @ngInject */
   constructor(instanceSettings, private $q, private backendSrv: BackendSrv, private templateSrv, private timeSrv) {
+    this.instanceSettings = instanceSettings;
     this.type = 'prometheus';
     this.editorSrc = 'app/features/prometheus/partials/query.editor.html';
     this.name = instanceSettings.name;
