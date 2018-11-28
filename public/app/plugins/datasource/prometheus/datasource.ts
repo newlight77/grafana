@@ -87,7 +87,7 @@ export class PrometheusDatasource {
 
   init() {
     this.loadRules();
-    this.token = instanceSettings.jsonData.token;
+    this.token = this.instanceSettings.jsonData.token;
   }
 
   _request(url, data?, options?: any) {
